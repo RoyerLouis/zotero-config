@@ -57,7 +57,7 @@ Here’s a curated list of plugins in the repository and their functionalities:
 | **Better BibTeX**    | Optimizes BibTeX/BibLaTeX export with custom citation keys and advanced management.                                                                  |
 | **Folder Import**    | Imports files from a local folder, automatically detecting metadata.                                                                                 |
 | **OCR**              | Adds Optical Character Recognition (OCR) functionality to make PDFs and images searchable.                                                           |
-|                      | 📄 **Requirements**: Install **Tesseract OCR** and `pdftoppm`. Check the Zotero OCR GitHub page for details.                                         |
+|                      | 📄 **Requirements**: Install **Tesseract OCR** and `pdftoppm`. Can be found in 'Prerequisite' folder but I would recommend you to check the Zotero OCR GitHub page for details and up to date software.                                         |
 | **Reading List**     | Manages and organizes a personal reading list, letting you track articles to read. (May overlap with **Ethereal**.)                                  |
 | **Ethereal Style**   | Adds features like reading status, notes (stars), and more.                                                                                          |
 |                      | 💡 **Recommended Configuration**: Right-click on the banner to add **Status** and **Rating** columns.                                               |
