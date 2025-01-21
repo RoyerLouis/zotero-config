@@ -13,7 +13,7 @@ Prioritize installing these plugins for an enhanced experience:
 - **Actions and Tags**
 - **Ethereal Style** (`zotero-style`)
 - **Ethereal Reference** (`zotero-reference`)
-- **Citation Count Manager`
+- **Citation Count Manager**
 
 [Explore more plugins here](https://www.zotero.org/support/plugins).
 
