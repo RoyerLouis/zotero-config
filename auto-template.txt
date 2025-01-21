@@ -1,0 +1,142 @@
+# This is for the plugin Better Notes
+# This template is specifically for importing/sharing, using better 
+# notes 'import from clipboard': copy the content and
+# goto Zotero menu bar, click Edit->Parameter->Better Notes
+#->Open Template Editor->Option->New Template from Clipboard. 
+# Do not copy-paste this to better notes template editor directly.
+name: "[item]auto-template"
+zoteroVersion: "7.0.11"
+pluginVersion: "2.2.3"
+savedAt: "2025-01-15T12:47:49.412Z"
+content: |-
+  // @author Louis Royer
+  // @link [PUBLISH PAGE URL](https://github.com/windingwind/zotero-better-notes/discussions/598)
+  <h1 style="text-align: center">${topItem.getField('title')}</h1>
+  <hr/>
+  <h2 style="color: #1B5E20; background-color:#81c784;">💡 Meta Data</h2>
+  
+  <table>
+      <tr>
+          <th style="background-color:#81c784;">
+              <p style="text-align: left;">Titre</p>
+          </th>
+          <td style="background-color:#81c784;">
+              ${topItem.getField('title')}
+          </td>
+      </tr>
+      <tr>
+          <th style="background-color:#388e3c;">
+              <p style="text-align: left">Journal</p>
+          </th>
+          <td style="background-color:#388e3c;">
+              ${topItem.getField('publicationTitle')}
+          </td>
+      </tr>
+      <tr>
+          <th style="background-color:#81c784;">
+              <p style="text-align: left">Auteurs</p>
+          </th>
+          <td style="background-color:#81c784;">
+              ${topItem.getCreators().map((v)=>v.firstName+" "+v.lastName).join("; ")}
+          </td>
+      </tr>
+      <tr>
+          <th style="background-color:#388e3c;">
+              <p style="text-align: left">Pub. date</p>
+          </th>
+          <td style="background-color:#388e3c;">
+              ${topItem.getField('date')}
+          </td>
+      </tr>
+      
+      <tr>
+          <th style="background-color:#81c784;">
+              <p style="text-align: left">DOI</p>
+          </th>
+          <td style="background-color:#81c784;">
+              <a href="https://doi.org/${topItem.getField('DOI')}">${topItem.getField('DOI')}</a>
+          </td>
+      </tr>
+      <tr>
+          <th style="background-color:#388e3c;">
+              <p style="text-align: left">Lien PDF</p>
+          </th>
+          <td style="background-color:#388e3c;">
+              <a href="zotero://open-pdf/0_${Zotero.Items.get(topItem.getAttachments())[0].key}">
+                  ${Zotero.Items.get(topItem.getAttachments())[0].getFilename()}
+              </a>
+          </td>
+      </tr>
+  
+  	<tr>
+          <th style="background-color:#81c784;">
+              <p style="text-align: left">Rating</p>
+          </th>
+          <td style="background-color:#81c784;">
+              ${topItem.getTags().find(tag => tag.tag.includes("⭐")).tag}
+          </td>
+      </tr>
+  </table>
+  
+  
+  
+  ${{
+  async function getAnnotationsByColor(_item, color) {
+    // Force fresh annotations retrieval
+    const annots = await _item.getAnnotations(); // Ensure latest annotations are fetched
+    const filteredAnnots = annots.filter((item) => item.annotationColor === color);
+    
+    if (filteredAnnots.length === 0) {
+      return "";
+    }
+    return Zotero.BetterNotes.api.convert.annotations2html(filteredAnnots, {
+      noteItem: targetNoteItem,
+    });
+  }
+  
+  // Fetch the latest attachments and annotations
+  const attachments = Zotero.Items.get(topItem.getAttachments()).filter((i) =>
+    i.isPDFAttachment()
+  );
+  
+  let res = ``;
+  const colors = {
+    "#ffd400": "📜 Contexte de recherche, fondements et objectif", // Yellow
+    "#5fb236": "&#x1F4CA Points inovants, design circuit", // Green
+    "#2ea8e5": "🔬 Resultats et comparaison avec l'état de l'art", // Blue
+    "#a28ae5": "🧠 Savoir général", // Purple
+    "#e56eee": "🚩 Conclusion", // Magenta
+    "#f19837": "📌 Particulièrement intéressant", // Orange
+    "#ff6666": "🗃️ Autre", // Red
+    "#aaaaaa": " Vocabulary, Names, Acronymes, Definitions", //gray
+    
+  };
+  
+  for (const attachment of attachments) {
+    // Loop through all color categories to fetch annotations for each
+    for (const color in colors) {
+      if (Object.hasOwnProperty.call(colors, color)) {
+        const colorName = colors[color];
+        const renderedAnnotations = await getAnnotationsByColor(
+          attachment,
+          color
+        );
+        if (renderedAnnotations) {
+          res += `<h2 style="background-color:  ${color};">${colorName}</h2>${renderedAnnotations}<hr/><p></p>`;
+        }
+      }
+    }
+    
+    // Fetch any annotations that don't match the defined colors (Other Annotations)
+    const renderedAnnotations = await getAnnotationsByColor(
+      attachment,
+      (_annot) => !colors.includes(_annot.annotationColor)
+    );
+    
+    if (renderedAnnotations) {
+      res += `<h2><p>Other Annotations</p></h2>\n${renderedAnnotations}`;
+    }
+  }
+  return res;
+  }}$
+  

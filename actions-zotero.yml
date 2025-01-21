@@ -1,0 +1,104 @@
+type: ActionsTagsBackup
+author: louis_royer
+platformVersion: 7.0.11
+pluginVersion: 2.1.0
+timestamp: '2025-01-15T12:55:26.357Z'
+actions:
+  1736862319655-iq5mW9ha:
+    event: 0
+    operation: 3
+    data: /reading
+    shortcut: Shift,Ctrl,R
+    enabled: true
+    menu: Reading
+    name: Unread->Reading
+    showInMenu:
+      item: false
+      collection: false
+      tools: false
+      reader: true
+      readerAnnotation: false
+  default1:
+    event: 2
+    operation: 2
+    data: /unread
+    shortcut: ''
+    enabled: true
+    menu: ''
+    name: Remove Unread When Close Tab
+    showInMenu:
+      item: true
+      collection: true
+      tools: true
+      reader: true
+      readerAnnotation: true
+  1736862221334-iq5mW9ha:
+    event: 0
+    operation: 3
+    data: /reading
+    shortcut: Shift,Ctrl,d
+    enabled: true
+    menu: Done
+    name: Reading->Done
+    showInMenu:
+      item: true
+      collection: true
+      tools: true
+      reader: true
+      readerAnnotation: true
+  1736861486182-iq5mW9ha:
+    event: 0
+    operation: 3
+    data: /reading
+    shortcut: Shift,Ctrl,R
+    enabled: true
+    menu: Reading
+    name: Reading
+    showInMenu:
+      item: false
+      collection: false
+      tools: false
+      reader: true
+      readerAnnotation: false
+  1736860364525-iq5mW9ha:
+    event: 0
+    operation: 3
+    data: /done
+    shortcut: Shift,Ctrl,d
+    enabled: true
+    menu: Done
+    name: Done
+    showInMenu:
+      item: true
+      collection: true
+      tools: true
+      reader: true
+      readerAnnotation: true
+  default0:
+    event: 1
+    operation: 1
+    data: /unread
+    shortcut: ''
+    enabled: true
+    menu: ''
+    name: Add Unread When Create Item
+    showInMenu:
+      item: true
+      collection: true
+      tools: true
+      reader: true
+      readerAnnotation: true
+  1736860462700-iq5mW9ha:
+    event: 3
+    operation: 1
+    data: /reading
+    shortcut: ''
+    enabled: true
+    menu: ''
+    name: Add Reading when open
+    showInMenu:
+      item: true
+      collection: true
+      tools: true
+      reader: true
+      readerAnnotation: true
